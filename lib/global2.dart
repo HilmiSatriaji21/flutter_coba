@@ -29,21 +29,35 @@ class Global extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
-                          Text('Negara :' +
+                          Text('Negara :\n' +
                               dataPost[index].countryRegion.toString()),
-                          Text('Positif :' +
+                          Text('Positif :\n' +
                               dataPost[index].confirmed.toString()),
-                          Text('Sembuh :' +
+                          Text('Sembuh :\n' +
                               dataPost[index].recovered.toString()),
-                          Text('Meninggal :' +
+                          Text('Meninggal :\n' +
                               dataPost[index].deaths.toString())
                         ],
                       ),
                     ),
                   );
-                },
+                },        
               );
             }
+             else{
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CircularProgressIndicator(strokeWidth:5),
+                  Center(
+                    child: Text(
+                      "Loading...",
+                      style: TextStyle(height: 5),
+                    ),
+                  ),
+                ],
+              );
+             }
           }),
     );
   }

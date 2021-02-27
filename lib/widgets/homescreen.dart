@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../data.dart' as data;
+import '../indonesia.dart' as data;
 import '../provinsi.dart' as provinsi;
 import '../global2.dart' as global;
 
@@ -42,7 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'TRAKING COVID',
+            'KAWAL COVID',
             style: TextStyle(fontSize: 16.0),
           ),
           bottom: PreferredSize(
@@ -71,7 +71,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         body: TabBarView(
           children: <Widget>[
             Container(
-              child: new data.Data(),
+              child: new data.Indonesia(),
             ),
             Container(
               child: new provinsi.Provinsi(),

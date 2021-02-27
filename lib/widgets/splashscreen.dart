@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Image.asset("assets/images/homeco.png"),
             Text("          "),
             Text(
-              "TRACKING COVID",
+              "KAWAL COVID",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

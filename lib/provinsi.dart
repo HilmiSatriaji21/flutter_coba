@@ -13,7 +13,6 @@ class Provinsi extends StatelessWidget {
           builder: (context, AsyncSnapshot<List<Post>> snapshot) {
             if (snapshot.hasData) {
               List<Post> dataPost = snapshot.data;
-
               return ListView.builder(
                 itemCount: dataPost.length,
                 itemBuilder: (context, index) {
@@ -29,20 +28,34 @@ class Provinsi extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
-                          Text('Kode Provinsi :' +
+                          Text('Kode Provinsi :\n' +
                               dataPost[index].kode_provi.toString()),
-                          Text('Provinsi :' + dataPost[index].provinsi),
-                          Text('Positif :' +
+                          Text('Provinsi :\n' + dataPost[index].provinsi),
+                          Text('Positif :\n' +
                               dataPost[index].kasus_posi.toString()),
-                          Text('Sembuh :' +
+                          Text('Sembuh :\n' +
                               dataPost[index].kasus_semb.toString()),
-                          Text('Meninggal :' +
+                          Text('Meninggal :\n' +
                               dataPost[index].kasus_meni.toString())
                         ],
                       ),
                     ),
                   );
                 },
+              );
+            }
+            else{
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CircularProgressIndicator(strokeWidth:5),
+                  Center(
+                    child: Text(
+                      "Loading...",
+                      style: TextStyle(height: 5),
+                    ),
+                  ),
+                ],
               );
             }
           }),
