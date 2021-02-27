@@ -13,36 +13,29 @@ class Provinsi extends StatelessWidget {
           builder: (context, AsyncSnapshot<List<Post>> snapshot) {
             if (snapshot.hasData) {
               List<Post> dataPost = snapshot.data;
-              return ListView.builder(
-                itemCount: dataPost.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: Card(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Icon(
-                              Icons.coronavirus,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text('Kode Provinsi :\n' +
-                              dataPost[index].kode_provi.toString()),
-                          Text('Provinsi :\n' + dataPost[index].provinsi),
-                          Text('Positif :\n' +
-                              dataPost[index].kasus_posi.toString()),
-                          Text('Sembuh :\n' +
-                              dataPost[index].kasus_semb.toString()),
-                          Text('Meninggal :\n' +
-                              dataPost[index].kasus_meni.toString())
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
+             return SingleChildScrollView(
+               scrollDirection: Axis.vertical,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                  columns: [
+                    DataColumn(label: Text('Kode Provinsi')),
+                    DataColumn(label: Text('Provinsi')),
+                    DataColumn(label: Text('Positif')),
+                    DataColumn(label: Text('Sembuh')),
+                    DataColumn(label: Text('Meninggal')),
+                  ],
+                  rows: dataPost
+                      .map((Post dataPost) =>
+                      DataRow(cells: [
+                        DataCell(Text(dataPost.kode_provi.toString())),
+                        DataCell(Text(dataPost.provinsi)),
+                        DataCell(Text(dataPost.kasus_posi.toString())),
+                        DataCell(Text(dataPost.kasus_semb.toString())),
+                        DataCell(Text(dataPost.kasus_meni.toString())),
+                      ]))
+                      .toList(),
+                )));              
             }
             else{
               return Column(

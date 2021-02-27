@@ -13,36 +13,27 @@ class Global extends StatelessWidget {
           builder: (context, AsyncSnapshot<List<Post>> snapshot) {
             if (snapshot.hasData) {
               List<Post> dataPost = snapshot.data;
-
-              return ListView.builder(
-                itemCount: dataPost.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: Card(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Icon(
-                              Icons.coronavirus,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text('Negara :\n' +
-                              dataPost[index].countryRegion.toString()),
-                          Text('Positif :\n' +
-                              dataPost[index].confirmed.toString()),
-                          Text('Sembuh :\n' +
-                              dataPost[index].recovered.toString()),
-                          Text('Meninggal :\n' +
-                              dataPost[index].deaths.toString())
-                        ],
-                      ),
-                    ),
-                  );
-                },        
-              );
+              return SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                  columns: [
+                    DataColumn(label: Text('Negara')),
+                    DataColumn(label: Text('Positif')),
+                    DataColumn(label: Text('Sembuh')),
+                    DataColumn(label: Text('Meninggal')),
+                  ],
+                  rows: dataPost
+                      .map((Post dataPost) =>
+                      DataRow(cells: [
+                        DataCell(Text(dataPost.countryRegion.toString())),
+                        DataCell(Text(dataPost.confirmed.toString())),
+                        DataCell(Text(dataPost.recovered.toString())),
+                        DataCell(Text(dataPost.deaths.toString())),
+                      ]))
+                      .toList(),
+                )));              
             }
              else{
               return Column(
