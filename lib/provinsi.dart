@@ -23,7 +23,7 @@ class Provinsi extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(5),
                             child: Icon(
-                              Icons.people,
+                              Icons.coronavirus,
                               size: 30,
                               color: Colors.black,
                             ),
@@ -51,7 +51,7 @@ class Provinsi extends StatelessWidget {
                   CircularProgressIndicator(strokeWidth:5),
                   Center(
                     child: Text(
-                      "Loading...",
+                      "Sabar...",
                       style: TextStyle(height: 5),
                     ),
                   ),
